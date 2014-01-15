@@ -1,0 +1,40 @@
+{
+  "name": "grunt-nunjucks-2-html",
+  "description": "Grunt task for rendering nunjucks templates to HTML",
+  "version": "0.1.0",
+  "homepage": "https://github.com/vitkarpov/grunt-nunjucks-2-html",
+  "author": {
+    "name": "Viktor Karpov",
+    "email": "viktor.s.karpov@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html.git"
+  },
+  "bugs": {
+    "url": "hhttps://github.com/vitkarpov/grunt-nunjucks-2-html/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html/blob/master/LICENSE"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "nunjucks": "~0.1.10"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.1",
+    "nunjucks": ">=0.1.10"
+  },
+  "keywords": [
+    "gruntplugin",
+    "nunjucks",
+    "compile"
+  ]
+}
