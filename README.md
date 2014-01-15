@@ -1,5 +1,7 @@
 # Nunjucks --> HTML
 
+[![NPM version](https://badge.fury.io/js/grunt-nunjucks-2-html.png)](http://badge.fury.io/js/grunt-nunjucks-2-html)
+
 It\`s a grunt plugin which renders nunjucks\` templates to HTML
 
 Install first:
