@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/grunt-nunjucks-2-html.png)](http://badge.fury.io/js/grunt-nunjucks-2-html)
 
-It\`s a grunt plugin which renders nunjucks\` templates to HTML
+It\`s a grunt plugin which renders nunjucks\` templates to HTML.
 
 Install first:
 
@@ -18,12 +18,13 @@ grunt.loadNpmTasks('grunt-nunjucks-2-html');
 
 ## Example usage
 
-It could looks like this:
+Put all of your templates to the one folder, set is as `templatesFolder` option.
 
 ```javasciprt
 grunt.initConfig({
   nunjucks: {
     options: {
+      templatesFolder: 'bundles',
       data: grunt.file.readJSON('templates-data.json')
     },
     render: {
@@ -37,6 +38,6 @@ grunt.initConfig({
          }
       ]
     }
-  },
-})
+  }
+});
 ```

@@ -10,19 +10,22 @@
 
 module.exports = function(grunt) {
     var nunjucks = require('nunjucks');
+    var path = require('path');
 
     grunt.registerMultiTask('nunjucks', 'Render nunjucks template to HTML', function() {
-        var opts = this.options();
+        var options = this.options();
 
-        var files = this.files.forEach(function(f) {
-            var filename = f.src;
+        nunjucks.configure(options.templatesFolder);
 
-            if (!grunt.file.exists(filename)) {
-                grunt.log.warn('Template file "' + filename + '" not found.');
+        this.files.forEach(function(f) {
+            var filepath = path.normalize(f.src[0]);
+
+            if (!grunt.file.exists(filepath)) {
+                grunt.log.warn('Template file "' + filepath + '" not found.');
                 return false;
             }
 
-            var compiledHtml = nunjucks.render(this.options.data || {});
+            var compiledHtml = nunjucks.render(path.basename(filepath), options.data || {});
 
             grunt.file.write(f.dest, compiledHtml);
             grunt.log.writeln('File "' + f.dest + '" created.');
