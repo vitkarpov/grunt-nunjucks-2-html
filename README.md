@@ -18,7 +18,10 @@ grunt.loadNpmTasks('grunt-nunjucks-2-html');
 
 ## Example usage
 
-Put all of your templates to the one folder, set is as `templatesFolder` option.
+You should define some options:
+
+* `templatesFolder` — nunjucks' templates live here, engine will try to resolve your includes relative to that folder
+* `data` — each template takes data for rendering: `{ page: '...', content: {...} }`. There is current page (basename of the html file path) and content object which is specified via this data option
 
 ```javasciprt
 grunt.initConfig({

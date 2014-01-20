@@ -12,10 +12,10 @@ module.exports = function(grunt) {
     var nunjucks = require('nunjucks');
     var path = require('path');
 
-    grunt.registerMultiTask('nunjucks', 'Render nunjucks template to HTML', function() {
+    grunt.registerMultiTask('nunjucks', 'Renders nunjucks template to HTML', function() {
         var options = this.options();
 
-        nunjucks.configure(options.templatesFolder);
+        nunjucks.configure(path.normalize(options.templatesFolder));
 
         this.files.forEach(function(f) {
             var filepath = path.normalize(f.src[0]);
@@ -25,7 +25,10 @@ module.exports = function(grunt) {
                 return false;
             }
 
-            var compiledHtml = nunjucks.render(path.basename(filepath), options.data || {});
+            var compiledHtml = nunjucks.render(path.basename(filepath), {
+                page: path.basename(filepath),
+                content: options.data || {}
+            });
 
             grunt.file.write(f.dest, compiledHtml);
             grunt.log.writeln('File "' + f.dest + '" created.');
