@@ -8,27 +8,32 @@
 
 'use strict';
 
-module.exports = function(grunt) {
-    var nunjucks = require('nunjucks');
-    var path = require('path');
+var nunjucks = require('nunjucks');
+var path = require('path');
 
-    grunt.registerMultiTask('nunjucks', 'Renders nunjucks template to HTML', function() {
+module.exports = function(grunt) {
+    grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
         var options = this.options();
 
-        nunjucks.configure(path.normalize(options.templatesFolder));
-
         this.files.forEach(function(f) {
-            var filepath = path.normalize(f.src[0]);
+            var filepath = path.resolve(__dirname, '../../../', f.src[0]);
 
             if (!grunt.file.exists(filepath)) {
-                grunt.log.warn('Template file "' + filepath + '" not found.');
+                grunt.log.warn('Template`s file "' + filepath + '" not found.');
                 return false;
             }
 
-            var compiledHtml = nunjucks.render(path.basename(filepath), {
-                page: path.basename(filepath),
-                content: options.data || {}
-            });
+            if (!options.data) {
+                grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
+            }
+
+            var data = (typeof options.preprocessData === 'function')
+                ? options.preprocessData.call(f, options.data || {})
+                : options.data || {};
+
+            var template = grunt.file.read(filepath);
+
+            var compiledHtml = nunjucks.renderString(template, data);
 
             grunt.file.write(f.dest, compiledHtml);
             grunt.log.writeln('File "' + f.dest + '" created.');
