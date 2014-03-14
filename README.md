@@ -64,6 +64,11 @@ You should specify a function to construct each data object for every of your te
 For instance, you could include name of the file inside an every data object
 
 ```javascipt
+
+var path = require('path');
+
+...
+
 nunjucks: {
   options: {
     preprocessData: function(data) {
