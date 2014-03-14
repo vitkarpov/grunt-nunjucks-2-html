@@ -1,46 +1,92 @@
-# Nunjucks --> HTML
+# Grunt task for rendering nunjucks` templates to HTML
 
 [![NPM version](https://badge.fury.io/js/grunt-nunjucks-2-html.png)](http://badge.fury.io/js/grunt-nunjucks-2-html)
 
-It\`s a grunt plugin which renders nunjucks\` templates to HTML.
+## Getting start
 
-Install first:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
 
-```
-$ npm install grunt-nunjucks-2-html
-```
+Once plugin has been installed include it in your `Gruntfile.js`
 
-and load new task into your `Gruntfile.js`
-
-```
+```javascript
 grunt.loadNpmTasks('grunt-nunjucks-2-html');
 ```
 
-## Example usage
+## Usage examples
 
-You should define some options:
+Task targets and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
-* `templatesFolder` — nunjucks' templates live here, engine will try to resolve your includes relative to that folder
-* `data` — each template takes data for rendering: `{ page: '...', content: {...} }`. There is current page (basename of the html file path) and content object which is specified via this data option
-
-```javasciprt
-grunt.initConfig({
-  nunjucks: {
-    options: {
-      templatesFolder: 'bundles',
-      data: grunt.file.readJSON('templates-data.json')
-    },
-    render: {
-      files: [
-         {
-            expand: true,
-            cwd: "bundles/",
-            src: "*.html",
-            dest: "build/",
-            ext: ".html"
-         }
-      ]
+```javascript
+nunjucks: {
+  options: {
+    data: grunt.file.readJSON('data.json')
+  },
+  render: {
+    files: {
+      'index.html' : 'templates/index-template.html'
     }
   }
-});
+}
 ```
+
+`index.html` is now compiled with `data.json`!
+
+```javascipt
+nunjucks: {
+  options: {
+    data: grunt.file.readJSON('data.json')
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+```
+
+You'll get a set of html files in `build` folder.
+
+## Options
+
+### data
+
+Read JSON from file using `grunt.file.readJSON` or specify object just inside your `Gruntfile`.
+
+### preprocessData
+
+You should specify a function to construct each data object for every of your templates. Execution context for the function would be a [grunt file object](http://gruntjs.com/api/inside-tasks#this.files). If you specify a data option it would be passed inside the function as an argument.
+
+For instance, you could include name of the file inside an every data object
+
+```javascipt
+nunjucks: {
+  options: {
+    preprocessData: function(data) {
+      var page = path.basename(this.src[0], '.html');
+      var result = {
+        page: page,
+        data: data
+      };
+      return result;
+    },
+    data: grunt.file.readJSON('data.json')
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+```
+
+Nice!
