@@ -95,4 +95,8 @@ nunjucks: {
   }
 ```
 
+### paths
+
+You could specify root path for your templates, `paths` would be set for [nunjucks' configure](http://mozilla.github.io/nunjucks/api#configure)
+
 Nice!
