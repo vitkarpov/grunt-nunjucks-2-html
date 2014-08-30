@@ -19,17 +19,18 @@ Task targets and options may be specified according to the grunt [Configuring ta
 ```javascript
 nunjucks: {
   options: {
-    data: grunt.file.readJSON('data.json')
+    data: grunt.file.readJSON('data.json'),
+    paths: 'templates'
   },
   render: {
     files: {
-      'index.html' : 'templates/index-template.html'
+      'index.html' : 'index.html'
     }
   }
 }
 ```
 
-`index.html` is now compiled with `data.json`!
+`templates/index.html` (relative to the gruntfile) is now compiled with `data.json`!
 
 ```javascipt
 nunjucks: {
