@@ -32,7 +32,11 @@ module.exports = function(grunt) {
                 : options.data || {};
 
             var template = grunt.file.read(filepath);
-
+            
+            if (Array.isArray(options.paths) && options.paths.length) {
+              nunjucks.configure(options.paths);
+            }
+            
             var compiledHtml = nunjucks.renderString(template, data);
 
             grunt.file.write(f.dest, compiledHtml);
