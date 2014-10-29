@@ -20,7 +20,7 @@ Task targets and options may be specified according to the grunt [Configuring ta
 nunjucks: {
   options: {
     data: grunt.file.readJSON('data.json'),
-    paths: 'templates'
+    paths: ['templates']
   },
   render: {
     files: {
@@ -35,7 +35,8 @@ nunjucks: {
 ```javascipt
 nunjucks: {
   options: {
-    data: grunt.file.readJSON('data.json')
+    data: grunt.file.readJSON('data.json'),
+    paths: ['templates']
   },
   render: {
     files: [
