@@ -33,9 +33,8 @@ module.exports = function(grunt) {
 
             var template = grunt.file.read(filepath);
             
-            if (Array.isArray(options.paths) && options.paths.length ||
-                typeof options.paths == 'string') {
-              nunjucks.configure(options.paths);
+            if (options.paths) {
+                nunjucks.configure(options.paths);
             }
             
             var compiledHtml = nunjucks.renderString(template, data);
