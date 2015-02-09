@@ -36,7 +36,12 @@ module.exports = function(grunt) {
             if (options.paths) {
                 nunjucks.configure(options.paths);
             }
-            
+            if(options.tags){
+                var basepath = options.paths || "";
+                nunjucks.configure(basepath, {
+                  tags: options.tags
+                });
+            }
             var compiledHtml = nunjucks.renderString(template, data);
 
             grunt.file.write(f.dest, compiledHtml);
