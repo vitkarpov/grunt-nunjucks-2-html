@@ -99,4 +99,35 @@ nunjucks: {
 
 You could specify root path for your templates, `paths` would be set for [nunjucks' configure](http://mozilla.github.io/nunjucks/api#configure)
 
+
+### Customizing Syntax
+
+If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
+
+nunjucks: {
+  options: {
+    tags: {
+      blockStart: '<%',
+      blockEnd: '%>',
+      variableStart: '<$',
+      variableEnd: '$>',
+      commentStart: '<#',
+      commentEnd: '#>'
+    },
+    data: grunt.file.readJSON('data.json')
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+```
+
+
 Nice!
