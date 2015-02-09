@@ -104,6 +104,7 @@ You could specify root path for your templates, `paths` would be set for [nunjuc
 
 If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
 
+```javascipt
 nunjucks: {
   options: {
     tags: {
