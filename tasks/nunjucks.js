@@ -15,6 +15,19 @@ module.exports = function(grunt) {
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
         var options = this.options();
 
+        if (!options.data) {
+            grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
+        }
+
+        var envOptions = { watch: false };
+        if (options.tags) {
+            envOptions.tags = options.tags;
+        }
+
+        var basePath = options.paths || '';
+        nunjucks.configure(basePath, envOptions);
+
+
         this.files.forEach(function(f) {
             var filepath = path.resolve(__dirname, '../../../', f.src[0]);
 
@@ -23,25 +36,11 @@ module.exports = function(grunt) {
                 return false;
             }
 
-            if (!options.data) {
-                grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
-            }
-
             var data = (typeof options.preprocessData === 'function')
                 ? options.preprocessData.call(f, options.data || {})
                 : options.data || {};
 
             var template = grunt.file.read(filepath);
-            
-            if (options.paths) {
-                nunjucks.configure(options.paths);
-            }
-            if(options.tags){
-                var basepath = options.paths || "";
-                nunjucks.configure(basepath, {
-                  tags: options.tags
-                });
-            }
             var compiledHtml = nunjucks.renderString(template, data);
 
             grunt.file.write(f.dest, compiledHtml);
