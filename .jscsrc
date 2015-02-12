@@ -1,0 +1,45 @@
+{
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do"
+    ],
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "return"
+    ],
+    "disallowSpaceAfterKeywords": [
+        "catch"
+    ],
+    "requireSpacesInFunctionExpression": { 
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowMultipleVarDecl": true,
+    "requireSpaceAfterBinaryOperators": [ "+", "-", "/", "*" ],
+    "requireSpaceBeforeBinaryOperators": [ "+", "-", "/", "*" ],
+    "disallowImplicitTypeConversion": ["numeric", "binary", "string"],
+    "disallowKeywords": ["with"],
+    "disallowKeywordsOnNewLine": ["else", "catch"],
+    "requireLineFeedAtFileEnd": true,
+    "validateJSDoc": {
+        "checkParamNames": true,
+        "requireParamTypes": true,
+        "checkRedundantParams": true
+    },
+    "disallowSpaceAfterObjectKeys": true,
+    "disallowYodaConditions": true,
+    "safeContextKeyword": "that",
+    "excludeFiles": [
+        "Gruntfile.js"
+    ]
+}

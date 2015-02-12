@@ -9,7 +9,7 @@
     "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html.git"
   },
   "bugs": {
-    "url": "hhttps://github.com/vitkarpov/grunt-nunjucks-2-html/issues"
+    "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html/issues"
   },
   "licenses": [
     {
@@ -17,17 +17,16 @@
       "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html/blob/master/LICENSE"
     }
   ],
-  "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.8.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "nunjucks": "~0.1.10"
+    "nunjucks": "~1.1.0",
+    "grunt-jscs": "~1.5.0",
+    "expect.js": ""
   },
   "peerDependencies": {
-    "grunt": ">=0.4.1",
-    "nunjucks": ">=0.1.10"
+    "grunt": ">=0.4.1"
   },
   "keywords": [
     "gruntplugin",
@@ -35,7 +34,7 @@
     "compile"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/grunt test && node tests/compare.js"
   },
   "license": "MIT"
 }
