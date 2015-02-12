@@ -6,12 +6,12 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 var nunjucks = require('nunjucks');
 var path = require('path');
 
 module.exports = function(grunt) {
+    'use strict';
+
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
         var options = this.options();
 
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
 
         this.files.forEach(function(f) {
-            var filepath = path.resolve(__dirname, '../../../', f.src[0]);
+            var filepath = path.join(process.cwd(), f.src[0]);
 
             if (!grunt.file.exists(filepath)) {
                 grunt.log.warn('Template`s file "' + filepath + '" not found.');

@@ -21,15 +21,12 @@
     "node": ">= 0.8.0"
   },
   "devDependencies": {
-    "nunjucks": "~0.1.10",
-    "expect.js": "*",
-    "mocha": "*",
+    "nunjucks": "~1.1.0",
     "grunt-jscs": "~1.5.0",
-    "grunt-mocha": "~0.4.11"
+    "expect.js": ""
   },
   "peerDependencies": {
-    "grunt": ">=0.4.1",
-    "nunjucks": ">=0.1.10"
+    "grunt": ">=0.4.1"
   },
   "keywords": [
     "gruntplugin",
@@ -37,7 +34,7 @@
     "compile"
   ],
   "scripts": {
-    "test": "node_modules/.bin/grunt test"
+    "test": "node_modules/.bin/grunt test && node tests/compare.js"
   },
   "license": "MIT"
 }

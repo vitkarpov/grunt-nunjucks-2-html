@@ -1,23 +1,26 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     jscs: {
-      src: "tasks/nunjucks.js",
+      src: ["tasks/nunjucks.js", "tests/compare.js"],
       options: {
         config: ".jscsrc"
       }
     },
-    mocha: {
-      test: {
-        fsrc: ['tests/*.js'],
-        options: {
-          reporter: 'Nyan',
+    nunjucks: {
+      options: {
+        data: grunt.file.readJSON('tests/data.json')
+      },
+      render: {
+        files: {
+          'tests/_output.html' : ['tests/input.html']
         }
       }
     }
   });
 
   grunt.loadNpmTasks("grunt-jscs");
-  grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadTasks("tasks/");
 
-  grunt.registerTask("test", ["jscs", "mocha"]);
+  grunt.registerTask("jscs", ["jscs"]);
+  grunt.registerTask("test", ["nunjucks"]);
 }
