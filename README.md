@@ -133,7 +133,35 @@ nunjucks: {
        }
     ]
   }
+}
 ```
 
+### configureEnvironment
+
+You could use nunjucks' environment API to set some global options. Use `configureEnvironment` function the same way as `preprocessData`.
+
+```js
+nunjucks: {
+  options: {
+    configureEnvironment: function(env) {
+      // for instance, let's set a global variable across all templates
+      env.addGlobal('foo', 'bar');
+    }
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+}
+```
+
+Check out [nunjucks' API](http://mozilla.github.io/nunjucks/api.html#environment) to know a list of available methods for environment object.
 
 Nice!
