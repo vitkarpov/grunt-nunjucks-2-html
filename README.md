@@ -60,7 +60,7 @@ $ npm test
 
 ## Options
 
-### data
+### Data
 
 Read JSON from file using `grunt.file.readJSON` or specify object just inside your `Gruntfile`.
 
@@ -70,16 +70,11 @@ You should specify a function to construct each data object for every of your te
 
 For instance, you could include name of the file inside an every data object
 
-```javascipt
-
-var path = require('path');
-
-...
-
+```js
 nunjucks: {
   options: {
     preprocessData: function(data) {
-      var page = path.basename(this.src[0], '.html');
+      var page = require('path').basename(this.src[0], '.html');
       var result = {
         page: page,
         data: data
@@ -99,9 +94,10 @@ nunjucks: {
        }
     ]
   }
+}
 ```
 
-### paths
+### Paths
 
 You could specify root path for your templates, `paths` would be set for [nunjucks' configure](http://mozilla.github.io/nunjucks/api#configure)
 
@@ -109,7 +105,7 @@ You could specify root path for your templates, `paths` would be set for [nunjuc
 
 If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
 
-```javascipt
+```js
 nunjucks: {
   options: {
     tags: {
