@@ -14,6 +14,9 @@ module.exports = function(grunt) {
         preprocessData: function(data) {
           data.page = path.basename(this.src[0], '.html'); 
           return data;
+        },
+        configureEnvironment: function(env) {
+          env.addGlobal('foo', 'bar');
         }
       },
       render: {

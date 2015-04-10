@@ -8,12 +8,14 @@
 
 var nunjucks = require('nunjucks');
 var path = require('path');
+var async = require('async');
 
 module.exports = function(grunt) {
     'use strict';
 
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
         var options = this.options();
+        var completeTask = this.async();
 
         if (!options.data) {
             grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
@@ -31,23 +33,32 @@ module.exports = function(grunt) {
             this.options.configureEnvironment(env);
         }
 
-        this.files.forEach(function(f) {
+        async.each(this.files, function(f, done) {
             var filepath = path.join(process.cwd(), f.src[0]);
-
-            if (!grunt.file.exists(filepath)) {
-                grunt.log.warn('Template`s file "' + filepath + '" not found.');
-                return false;
-            }
 
             var data = (typeof options.preprocessData === 'function')
                 ? options.preprocessData.call(f, options.data || {})
                 : options.data || {};
 
             var template = grunt.file.read(filepath);
-            var compiledHtml = nunjucks.renderString(template, data);
+            try {
+                var html = env.renderString(template, data);
+            } catch(e) {
+                grunt.log.error(e);
+            }
 
-            grunt.file.write(f.dest, compiledHtml);
-            grunt.log.writeln('File "' + f.dest + '" created.');
+            if (html) {
+                grunt.file.write(f.dest, html);
+                grunt.log.writeln('File "' + f.dest + '" created.');
+            }
+
+            done();
+
+        }, function(err) {
+            if (err) {
+                grunt.log.error(err);
+            }
+            completeTask();
         });
     });
 };
