@@ -23,7 +23,8 @@
   "devDependencies": {
     "nunjucks": "~1.1.0",
     "grunt-jscs": "~1.5.0",
-    "expect.js": ""
+    "expect.js": "~0.3.0",
+    "async": "~0.9.0"
   },
   "peerDependencies": {
     "grunt": ">=0.4.1"
