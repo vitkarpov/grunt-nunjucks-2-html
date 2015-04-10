@@ -29,30 +29,31 @@ module.exports = function(grunt) {
         var basePath = options.paths || '';
         var env = nunjucks.configure(basePath, envOptions);
 
-        if (typeof this.options.configureEnvironment === 'function') {
-            this.options.configureEnvironment(env);
+        if (typeof options.configureEnvironment === 'function') {
+            options.configureEnvironment(env);
         }
 
         async.each(this.files, function(f, done) {
             var filepath = path.join(process.cwd(), f.src[0]);
+            var data = options.data || {};
 
-            var data = (typeof options.preprocessData === 'function')
-                ? options.preprocessData.call(f, options.data || {})
-                : options.data || {};
+            if (typeof options.preprocessData === 'function') {
+                data = options.preprocessData.call(f, data);
+            }
 
             var template = grunt.file.read(filepath);
             try {
                 var html = env.renderString(template, data);
             } catch(e) {
                 grunt.log.error(e);
+                done(err);
             }
 
             if (html) {
                 grunt.file.write(f.dest, html);
                 grunt.log.writeln('File "' + f.dest + '" created.');
+                done();
             }
-
-            done();
 
         }, function(err) {
             if (err) {
