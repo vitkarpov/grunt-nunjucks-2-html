@@ -25,8 +25,11 @@ module.exports = function(grunt) {
         }
 
         var basePath = options.paths || '';
-        nunjucks.configure(basePath, envOptions);
+        var env = nunjucks.configure(basePath, envOptions);
 
+        if (typeof this.options.configureEnvironment === 'function') {
+            this.options.configureEnvironment(env);
+        }
 
         this.files.forEach(function(f) {
             var filepath = path.join(process.cwd(), f.src[0]);
