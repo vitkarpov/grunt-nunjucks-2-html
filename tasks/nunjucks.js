@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 
         async.each(this.files, function(f, done) {
             var filepath = path.join(process.cwd(), f.src[0]);
-            var data = options.data || {};
+            var data = JSON.parse(JSON.stringify(options.data || {}));
 
             if (typeof options.preprocessData === 'function') {
                 data = options.preprocessData.call(f, data);
