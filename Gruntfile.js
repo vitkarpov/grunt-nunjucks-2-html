@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = function(grunt) {
   grunt.initConfig({
     jscs: {
-      src: ["tasks/nunjucks.js", "tests/compare.js"],
+      src: ["tasks/nunjucks.js", "tests/**/*.js"],
       options: {
         config: ".jscsrc"
       }
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       },
       render: {
         files: {
-          'tests/_output.html' : ['tests/input.html'],
+          'tests/base/_output.html' : ['tests/base/input.html'],
           'tests/leaking-vars/_output1.html' : ['tests/leaking-vars/input1.html'],
           'tests/leaking-vars/_output2.html' : ['tests/leaking-vars/input2.html']
         }
@@ -32,6 +32,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-jscs");
   grunt.loadTasks("tasks/");
 
-  grunt.registerTask("jscs", ["jscs"]);
   grunt.registerTask("test", ["nunjucks"]);
 }

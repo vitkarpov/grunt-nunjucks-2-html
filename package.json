@@ -37,7 +37,7 @@
     "compile"
   ],
   "scripts": {
-    "test": "node_modules/.bin/grunt test && node tests/compare.js"
+    "test": "grunt jscs && grunt test && node tests/all.js"
   },
   "license": "MIT"
 }
