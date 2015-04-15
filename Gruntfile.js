@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       options: {
         data: grunt.file.readJSON('tests/data.json'),
         preprocessData: function(data) {
-          data.page = path.basename(this.src[0], '.html'); 
+          data.page = path.basename(this.src[0], '.html');
           return data;
         },
         configureEnvironment: function(env) {
@@ -21,7 +21,9 @@ module.exports = function(grunt) {
       },
       render: {
         files: {
-          'tests/_output.html' : ['tests/input.html']
+          'tests/_output.html' : ['tests/input.html'],
+          'tests/leaking-vars/_output1.html' : ['tests/leaking-vars/input1.html'],
+          'tests/leaking-vars/_output2.html' : ['tests/leaking-vars/input2.html']
         }
       }
     }
