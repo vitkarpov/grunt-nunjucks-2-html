@@ -3,8 +3,8 @@ var fs = require('fs');
 var util = require('util');
 
 var sample1 = fs.readFileSync('tests/leaking-vars/output1.html').toString();
-var sample2 = fs.readFileSync('tests/leaking-vars/output1.html').toString();
-var test1 = fs.readFileSync('tests/leaking-vars/_output2.html').toString();
+var sample2 = fs.readFileSync('tests/leaking-vars/output2.html').toString();
+var test1 = fs.readFileSync('tests/leaking-vars/_output1.html').toString();
 var test2 = fs.readFileSync('tests/leaking-vars/_output2.html').toString();
 
 try {
