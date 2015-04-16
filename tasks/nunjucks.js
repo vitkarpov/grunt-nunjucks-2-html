@@ -45,8 +45,7 @@ module.exports = function(grunt) {
             try {
                 var html = env.renderString(template, data);
             } catch(e) {
-                grunt.log.error(e);
-                done(err);
+                done(e);
             }
 
             if (html) {
