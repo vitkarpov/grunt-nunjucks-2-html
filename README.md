@@ -50,6 +50,32 @@ nunjucks: {
   }
 ```
 
+## Adding filters
+
+```javascipt
+nunjucks: {
+  options: {
+    filters : function(env, options){
+      // Example of a localization filter
+      env.addFilter('trans', function(str, obj) {
+        var lang = options.lang || 'en_US';
+        var locale = YAML.load('locales/'+lang+'.yml');
+
+        var string = locale[str],
+            myObj = obj || {};
+
+        for (var params in myObj) {
+          if (myObj.hasOwnProperty(params)) {
+            string = string.replace('%' + params + '%', myObj[params]);
+          }
+        }
+
+        return string;
+      });
+    }
+  }
+```
+
 You'll get a set of html files in `build` folder.
 
 ## Tests
