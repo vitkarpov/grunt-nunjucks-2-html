@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         var env = nunjucks.configure(basePath, envOptions);
 
         if (typeof options.configureEnvironment === 'function') {
-            options.configureEnvironment.call(this, env);
+            options.configureEnvironment.call(this, env, nunjucks);
         }
 
         async.each(this.files, function(f, done) {
