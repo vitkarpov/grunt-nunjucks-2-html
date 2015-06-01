@@ -136,10 +136,12 @@ nunjucks: {
 
 You could use nunjucks' environment API to set some global options. Use `configureEnvironment` function the same way as `preprocessData`.
 
+As the second argument for the function you have nunjucks` instance, so you can do some extra work before rendering. For instance, you can pre-render some string in custom filter or extension.
+
 ```js
 nunjucks: {
   options: {
-    configureEnvironment: function(env) {
+    configureEnvironment: function(env, nunjucks) {
       // for instance, let's set a global variable across all templates
       env.addGlobal('foo', 'bar');
     }
