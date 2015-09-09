@@ -21,7 +21,7 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "nunjucks": "^1.1.0",
+    "nunjucks": "^2.0.0",
     "async": "^0.9.0"
   },
   "devDependencies": {
