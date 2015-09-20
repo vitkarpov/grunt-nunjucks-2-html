@@ -9,6 +9,7 @@
 var nunjucks = require('nunjucks');
 var path = require('path');
 var async = require('async');
+var _ = require('lodash');
 
 module.exports = function(grunt) {
     'use strict';
@@ -35,8 +36,9 @@ module.exports = function(grunt) {
 
         async.each(this.files, function(f, done) {
             var filepath = path.join(process.cwd(), f.src[0]);
+
             // We need to clone the data
-            var data = Object.create(options.data || {});
+            var data = _.cloneDeep(options.data || {});
 
             if (typeof options.preprocessData === 'function') {
                 data = options.preprocessData.call(f, data);
