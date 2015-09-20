@@ -1,4 +1,4 @@
-/*
+/**
  * grunt-nunjucks-2-html
  * https://github.com/vitkarpov/grunt-nunjucks-2-html
  *

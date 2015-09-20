@@ -18,7 +18,7 @@
     "disallowSpaceAfterKeywords": [
         "catch"
     ],
-    "requireSpacesInFunctionExpression": { 
+    "requireSpacesInFunctionExpression": {
         "beforeOpeningCurlyBrace": true
     },
     "disallowSpacesInFunctionExpression": {
@@ -31,11 +31,6 @@
     "disallowKeywords": ["with"],
     "disallowKeywordsOnNewLine": ["else", "catch"],
     "requireLineFeedAtFileEnd": true,
-    "validateJSDoc": {
-        "checkParamNames": true,
-        "requireParamTypes": true,
-        "checkRedundantParams": true
-    },
     "disallowSpaceAfterObjectKeys": true,
     "disallowYodaConditions": true,
     "safeContextKeyword": "that",
