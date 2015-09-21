@@ -44,18 +44,15 @@ module.exports = function(grunt) {
                 data = options.preprocessData.call(f, data);
             }
 
-            var template = grunt.file.read(filepath);
-            try {
-                var html = env.renderString(template, data);
-            } catch(e) {
-                done(e);
-            }
-
-            if (html) {
-                grunt.file.write(f.dest, html);
+            env.render(filepath, data, function(err, res) {
+                if (err) {
+                    grunt.log.error(err);
+                    return done();
+                }
+                grunt.file.write(f.dest, res);
                 grunt.log.writeln('File "' + f.dest + '" created.');
                 done();
-            }
+            });
 
         }, function(err) {
             if (err) {
