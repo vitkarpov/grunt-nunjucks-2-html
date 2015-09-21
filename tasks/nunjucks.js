@@ -44,7 +44,8 @@ module.exports = function(grunt) {
                 data = options.preprocessData.call(f, data);
             }
 
-            env.render(filepath, data, function(err, res) {
+            var template = grunt.file.read(filepath);
+            env.renderString(template, data, function(err, res) {
                 if (err) {
                     grunt.log.error(err);
                     return done();
