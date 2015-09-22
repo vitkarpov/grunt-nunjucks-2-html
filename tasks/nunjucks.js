@@ -22,6 +22,9 @@ module.exports = function(grunt) {
         }
 
         var envOptions = { watch: false };
+        if (typeof options.autoescape === 'boolean') {
+            envOptions.autoescape = options.autoescape;
+        }
         if (options.tags) {
             envOptions.tags = options.tags;
         }
