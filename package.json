@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/vitkarpov/grunt-nunjucks-2-html/issues"
   },
-  "license": "MIT <LICENSE>",
+  "license": "MIT",
   "keywords": [
     "gruntplugin",
     "nunjucks",
