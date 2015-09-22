@@ -51,7 +51,7 @@ module.exports = function(grunt) {
             env.render(filepath, data, function(err, res) {
                 if (err) {
                     grunt.log.error(err);
-                    grunt.fail.warn('Faild to compile one of sources.');
+                    grunt.fail.warn('Failed to compile one of the sources.');
                     return done();
                 }
                 grunt.file.write(f.dest, res);
