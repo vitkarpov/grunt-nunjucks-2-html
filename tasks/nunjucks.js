@@ -9,7 +9,6 @@
 var nunjucks = require('nunjucks');
 var path = require('path');
 var async = require('async');
-var _ = require('lodash');
 
 module.exports = function(grunt) {
     'use strict';
@@ -38,14 +37,18 @@ module.exports = function(grunt) {
             var filepath = path.join(process.cwd(), f.src[0]);
 
             // We need to clone the data
-            var data = _.cloneDeep(options.data || {});
+            var data = {};
+            for (var i in options.data) {
+                if (options.data.hasOwnProperty(i)) {
+                    data[i] = options.data[i];
+                }
+            }
 
             if (typeof options.preprocessData === 'function') {
                 data = options.preprocessData.call(f, data);
             }
 
-            var template = grunt.file.read(filepath);
-            env.renderString(template, data, function(err, res) {
+            env.render(filepath, data, function(err, res) {
                 if (err) {
                     grunt.log.error(err);
                     return done();
