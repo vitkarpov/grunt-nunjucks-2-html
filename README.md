@@ -101,6 +101,29 @@ nunjucks: {
 
 You could specify root path for your templates, `paths` would be set for [nunjucks' configure](http://mozilla.github.io/nunjucks/api#configure)
 
+### Autoescaping
+
+You can turn off Nunjucks' [autoescaping](https://mozilla.github.io/nunjucks/templating.html#autoescaping) which is enabled by default:
+
+```js
+nunjucks: {
+  options: {
+    autoescape: false
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+}
+```
+
 ### Customizing Syntax
 
 If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
