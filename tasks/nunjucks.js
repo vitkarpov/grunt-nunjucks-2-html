@@ -48,6 +48,7 @@ module.exports = function(grunt) {
             env.renderString(template, data, function(err, res) {
                 if (err) {
                     grunt.log.error(err);
+                    grunt.fail.warn('Faild to compile one of sources.');
                     return done();
                 }
                 grunt.file.write(f.dest, res);
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
         }, function(err) {
             if (err) {
                 grunt.log.error(err);
+                grunt.fail.warn('Something went wrong.');
             }
             completeTask();
         });
