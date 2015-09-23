@@ -21,7 +21,10 @@ module.exports = function(grunt) {
             grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
         }
 
-        var envOptions = { watch: false };
+        var envOptions = {
+            watch: false,
+            autoescape: options.autoescape || undefined
+        };
         if (options.tags) {
             envOptions.tags = options.tags;
         }
