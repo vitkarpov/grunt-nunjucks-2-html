@@ -93,7 +93,7 @@ module.exports = function(grunt) {
 
         var logType            = (countCompiled === totalFiles) ? 'ok' : 'error';
         var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red';
-        grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
+        grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.');
 
         completeTask();
     });
