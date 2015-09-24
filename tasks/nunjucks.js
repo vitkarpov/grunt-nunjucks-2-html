@@ -19,10 +19,15 @@ module.exports = function(grunt) {
         var completeTask = this.async();
 
         // Get options and set defaults
+        // @note We're using `undefined` to fallback to Nunjucks' default settings
         var options = this.options({
             data                 : false,
-            autoescape           : undefined, // avoid overriding of Nunjucks' default preference
-            tags                 : false,
+            autoescape           : undefined,
+            throwOnUndefined     : undefined,
+            trimBlocks           : undefined,
+            lstripBlocks         : undefined,
+            noCache              : undefined,
+            tags                 : undefined,
             paths                : '',
             configureEnvironment : false,
             preprocessData       : false
@@ -43,9 +48,13 @@ module.exports = function(grunt) {
 
         // Arm Nunjucks
         var env = nunjucks.configure(options.paths, {
-            watch: false,
-            autoescape: options.autoescape,
-            tags: options.tags
+            watch            : false,
+            autoescape       : options.autoescape,
+            throwOnUndefined : options.throwOnUndefined,
+            trimBlocks       : options.trimBlocks,
+            lstripBlocks     : options.lstripBlocks,
+            noCache          : options.noCache,
+            tags             : options.tags
         });
 
         // Pass configuration to Nunjucks if specified
