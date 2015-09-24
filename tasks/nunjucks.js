@@ -49,6 +49,12 @@ module.exports = function(grunt) {
             }
 
             file.src.forEach(function(src) {
+                if (!grunt.file.exists(src)) {
+                    grunt.log.error('Source file ' + src ' for ' + filedest + ' not found.');
+
+                    return
+                }
+
                 var filepath = path.join(process.cwd(), src);
 
                 // We need to clone the data
