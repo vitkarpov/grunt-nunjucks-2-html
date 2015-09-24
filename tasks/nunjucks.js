@@ -17,6 +17,12 @@ module.exports = function(grunt) {
         var options = this.options();
         var completeTask = this.async();
 
+        if (!this.files.length) {
+            grunt.log.error('No files specified.');
+
+            return completeTask()
+        }
+
         if (!options.data) {
             grunt.log.error('Template`s data is empty. Guess you forget to specify data option');
         }
