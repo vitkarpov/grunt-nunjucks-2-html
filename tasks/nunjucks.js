@@ -78,7 +78,9 @@ module.exports = function(grunt) {
                         return
                     }
                     grunt.file.write(filedest, res);
-                    grunt.log.writeln('File "' + filedest + '" created.');
+
+                    grunt.verbose.ok('File "' + filedest + '" created.');
+                    grunt.verbose.writeln();
                 });
             });
         });
