@@ -9,6 +9,7 @@
 'use strict';
 
 var nunjucks = require('nunjucks');
+var chalk = require('chalk');
 var path = require('path');
 
 module.exports = function(grunt) {
@@ -46,14 +47,14 @@ module.exports = function(grunt) {
             var filedest = file.dest;
 
             if (!file.src.length) {
-                grunt.log.error('No source files specified for ' + filedest);
+                grunt.log.error('No source files specified for ' + chalk.cyan(filedest));
 
                 return
             }
 
             file.src.forEach(function(src) {
                 if (!grunt.file.exists(src)) {
-                    grunt.log.error('Source file ' + src + ' for ' + filedest + ' not found.');
+                    grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.');
 
                     return
                 }
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
                     }
                     grunt.file.write(filedest, res);
 
-                    grunt.verbose.ok('File "' + filedest + '" created.');
+                    grunt.verbose.ok('File "' + chalk.cyan(filedest) + '" created.');
                     grunt.verbose.writeln();
                 });
 
