@@ -39,6 +39,9 @@ module.exports = function(grunt) {
             options.configureEnvironment.call(this, env, nunjucks);
         }
 
+        var totalFiles = this.files.length;
+        var countCompiled = 0;
+
         this.files.forEach(function(file) {
             var filedest = file.dest;
 
@@ -82,8 +85,12 @@ module.exports = function(grunt) {
                     grunt.verbose.ok('File "' + filedest + '" created.');
                     grunt.verbose.writeln();
                 });
+
+                countCompiled++
             });
         });
+
+        grunt.log.ok(countCompiled + '/' + totalFiles + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
 
         completeTask();
     });
