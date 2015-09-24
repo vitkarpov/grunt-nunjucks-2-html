@@ -91,7 +91,9 @@ module.exports = function(grunt) {
             });
         });
 
-        grunt.log.ok(countCompiled + '/' + totalFiles + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
+        var logType            = (countCompiled === totalFiles) ? 'ok' : 'error';
+        var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red';
+        grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
 
         completeTask();
     });
