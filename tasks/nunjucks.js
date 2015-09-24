@@ -21,6 +21,7 @@ module.exports = function(grunt) {
         // Get options and set defaults
         var options = this.options({
             data                 : false,
+            autoescape           : undefined, // avoid overriding of Nunjucks' default preference
             tags                 : false,
             paths                : '',
             configureEnvironment : false,
@@ -43,6 +44,7 @@ module.exports = function(grunt) {
         // Arm Nunjucks
         var env = nunjucks.configure(options.paths, {
             watch: false,
+            autoescape: options.autoescape,
             tags: options.tags
         });
 
