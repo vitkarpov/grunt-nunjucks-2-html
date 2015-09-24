@@ -14,7 +14,7 @@ var path = require('path');
 
 module.exports = function(grunt) {
 
-    grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
+    grunt.registerMultiTask('nunjucks', 'Renders nunjucks\' template to HTML', function() {
         // Declare async task
         var completeTask = this.async();
 
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
         // Warn in case of undefined data
         if (!options.data) {
-            grunt.log.error('Template`s data is empty. Guess you forget to specify data option');
+            grunt.log.error('Template\'s data is empty. Guess you forget to specify data option');
         }
 
         // Construct options for Nunjucks' environment
