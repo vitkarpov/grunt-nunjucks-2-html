@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                     }
                     grunt.file.write(filedest, res);
 
-                    grunt.verbose.ok('File "' + chalk.cyan(filedest) + '" created.');
+                    grunt.verbose.ok('File ' + chalk.cyan(filedest) + ' created.');
                     grunt.verbose.writeln();
                 });
 
