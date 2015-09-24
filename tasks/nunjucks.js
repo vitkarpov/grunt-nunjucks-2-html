@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         var completeTask = this.async();
 
         if (!options.data) {
-            grunt.log.warn('Template`s data is empty. Guess you forget to specify data option');
+            grunt.log.error('Template`s data is empty. Guess you forget to specify data option');
         }
 
         var envOptions = { watch: false };
