@@ -8,7 +8,6 @@
 
 var nunjucks = require('nunjucks');
 var path = require('path');
-var async = require('async');
 
 module.exports = function(grunt) {
     'use strict';
@@ -33,38 +32,35 @@ module.exports = function(grunt) {
             options.configureEnvironment.call(this, env, nunjucks);
         }
 
-        async.each(this.files, function(f, done) {
-            var filepath = path.join(process.cwd(), f.src[0]);
+        this.files.forEach(function(file) {
+            var filedest = file.dest;
 
-            // We need to clone the data
-            var data = {};
-            for (var i in options.data) {
-                if (options.data.hasOwnProperty(i)) {
-                    data[i] = options.data[i];
+            file.src.forEach(function(src) {
+                var filepath = path.join(process.cwd(), src);
+
+                // We need to clone the data
+                var data = {};
+                for (var i in options.data) {
+                    if (options.data.hasOwnProperty(i)) {
+                        data[i] = options.data[i];
+                    }
                 }
-            }
 
-            if (typeof options.preprocessData === 'function') {
-                data = options.preprocessData.call(f, data);
-            }
-
-            env.render(filepath, data, function(err, res) {
-                if (err) {
-                    grunt.log.error(err);
-                    grunt.fail.warn('Failed to compile one of the sources.');
-                    return done();
+                if (typeof options.preprocessData === 'function') {
+                    data = options.preprocessData.call(file, data);
                 }
-                grunt.file.write(f.dest, res);
-                grunt.log.writeln('File "' + f.dest + '" created.');
-                done();
+
+                env.render(filepath, data, function(err, res) {
+                    if (err) {
+                        grunt.log.error(err);
+                        grunt.fail.warn('Failed to compile one of the sources.');
+                    }
+                    grunt.file.write(filedest, res);
+                    grunt.log.writeln('File "' + filedest + '" created.');
+                });
             });
-
-        }, function(err) {
-            if (err) {
-                grunt.log.error(err);
-                grunt.fail.warn('Something went wrong.');
-            }
-            completeTask();
         });
+
+        completeTask();
     });
 };
