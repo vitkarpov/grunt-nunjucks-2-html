@@ -109,8 +109,6 @@ module.exports = function(grunt) {
                     }
                 }
 
-
-
                 // Asynchronously render templates with configurated Nunjucks environment
                 // and write to destination
                 env.render(filepath, data, function(err, res) {
