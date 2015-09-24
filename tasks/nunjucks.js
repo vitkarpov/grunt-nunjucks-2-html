@@ -73,6 +73,7 @@ module.exports = function(grunt) {
                     if (err) {
                         grunt.log.error(err);
                         grunt.fail.warn('Failed to compile one of the sources.');
+                        grunt.log.writeln();
 
                         return
                     }
