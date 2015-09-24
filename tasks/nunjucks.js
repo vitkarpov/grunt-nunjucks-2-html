@@ -42,6 +42,12 @@ module.exports = function(grunt) {
         this.files.forEach(function(file) {
             var filedest = file.dest;
 
+            if (!file.src.length) {
+                grunt.log.error('No source files specified for ' + filedest);
+
+                return
+            }
+
             file.src.forEach(function(src) {
                 var filepath = path.join(process.cwd(), src);
 
