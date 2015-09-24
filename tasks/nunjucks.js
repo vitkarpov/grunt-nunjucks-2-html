@@ -82,18 +82,23 @@ module.exports = function(grunt) {
                 // Construct absolute path to file for Nunjucks
                 var filepath = path.join(process.cwd(), src);
 
-                // Clone data
                 var data = {};
-                for (var i in options.data) {
-                    if (options.data.hasOwnProperty(i)) {
-                        data[i] = options.data[i];
+                // Work with data only there is any data
+                if (options.data) {
+                    // Clone data
+                    for (var i in options.data) {
+                        if (options.data.hasOwnProperty(i)) {
+                            data[i] = options.data[i];
+                        }
+                    }
+
+                    // Preprocess data
+                    if (typeof options.preprocessData === 'function') {
+                        data = options.preprocessData.call(file, data);
                     }
                 }
 
-                // Preprocess data
-                if (typeof options.preprocessData === 'function') {
-                    data = options.preprocessData.call(file, data);
-                }
+
 
                 // Asynchronously render templates with configurated Nunjucks environment
                 // and write to destination
