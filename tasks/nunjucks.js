@@ -117,7 +117,7 @@ module.exports = function(grunt) {
                     // Catch errors, warn
                     if (err) {
                         grunt.log.error(err);
-                        grunt.fail.warn('Failed to compile one of the sources.');
+                        grunt.fail.warn('Failed to compile one of the source files.');
                         grunt.log.writeln();
 
                         // Prevent writing of failed to compile file, skip to next file
