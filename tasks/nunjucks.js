@@ -6,11 +6,12 @@
  * Licensed under the MIT license.
  */
 
+'use strict';
+
 var nunjucks = require('nunjucks');
 var path = require('path');
 
 module.exports = function(grunt) {
-    'use strict';
 
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
         var options = this.options();
