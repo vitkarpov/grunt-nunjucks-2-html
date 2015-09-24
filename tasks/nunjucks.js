@@ -15,8 +15,9 @@ var path = require('path');
 module.exports = function(grunt) {
 
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks` template to HTML', function() {
-        var options = this.options();
         var completeTask = this.async();
+
+        var options = this.options();
 
         if (!this.files.length) {
             grunt.log.error('No files specified.');
