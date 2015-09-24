@@ -18,8 +18,14 @@ module.exports = function(grunt) {
         // Declare async task
         var completeTask = this.async();
 
-        // Get options
-        var options = this.options();
+        // Get options and set defaults
+        var options = this.options({
+            data                 : false,
+            tags                 : false,
+            paths                : '',
+            configureEnvironment : false,
+            preprocessData       : false
+        });
 
         // Finish task if no files specified
         if (!this.files.length) {
@@ -34,17 +40,11 @@ module.exports = function(grunt) {
             grunt.log.error('Template\'s data is empty. Guess you forget to specify data option');
         }
 
-        // Construct options for Nunjucks' environment
-        var envOptions = { watch: false };
-        if (options.tags) {
-            envOptions.tags = options.tags;
-        }
-
-        // Get path for Nunjucks' environment
-        var basePath = options.paths || '';
-
         // Arm Nunjucks
-        var env = nunjucks.configure(basePath, envOptions);
+        var env = nunjucks.configure(options.paths, {
+            watch: false,
+            tags: options.tags
+        });
 
         // Pass configuration to Nunjucks if specified
         if (typeof options.configureEnvironment === 'function') {
