@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
             file.src.forEach(function(src) {
                 if (!grunt.file.exists(src)) {
-                    grunt.log.error('Source file ' + src ' for ' + filedest + ' not found.');
+                    grunt.log.error('Source file ' + src + ' for ' + filedest + ' not found.');
 
                     return
                 }
