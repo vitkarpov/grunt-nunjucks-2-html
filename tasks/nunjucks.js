@@ -21,15 +21,15 @@ module.exports = function(grunt) {
         // Get options and set defaults
         // @note We're using `undefined` to fallback to Nunjucks' default settings
         var options = this.options({
-            data                 : false,
+            paths                : '',
             autoescape           : undefined,
             throwOnUndefined     : undefined,
             trimBlocks           : undefined,
             lstripBlocks         : undefined,
             noCache              : undefined,
             tags                 : undefined,
-            paths                : '',
             configureEnvironment : false,
+            data                 : false,
             preprocessData       : false
         });
 
