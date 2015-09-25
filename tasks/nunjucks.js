@@ -8,19 +8,19 @@
 
 'use strict'
 
-var nunjucks = require('nunjucks')
-var chalk = require('chalk')
-var path = require('path')
+const nunjucks = require('nunjucks')
+const chalk = require('chalk')
+const path = require('path')
 
 module.exports = function (grunt) {
 
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks\' template to HTML', function () {
         // Declare async task
-        var completeTask = this.async()
+        const completeTask = this.async()
 
         // Get options and set defaults
         // @note We're using `undefined` to fallback to Nunjucks' default settings
-        var options = this.options({
+        const options = this.options({
             paths                : '',
             autoescape           : undefined,
             throwOnUndefined     : undefined,
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         }
 
         // Arm Nunjucks
-        var env = nunjucks.configure(options.paths, {
+        const env = nunjucks.configure(options.paths, {
             watch            : false,
             autoescape       : options.autoescape,
             throwOnUndefined : options.throwOnUndefined,
@@ -63,16 +63,16 @@ module.exports = function (grunt) {
         }
 
         // Get number of files
-        var totalFiles = this.files.length
+        const totalFiles = this.files.length
         // Start counter for number of compiled files
-        var countCompiled = 0
+        let countCompiled = 0
 
         new Promise((resolve, reject) => {
 
             // Iterate over all files' groups
             this.files.forEach(file => {
                 // Set destination
-                var filedest = file.dest
+                let filedest = file.dest
 
                 // Check whether there are any source files
                 if (!file.src.length) {
@@ -93,13 +93,13 @@ module.exports = function (grunt) {
                     }
 
                     // Construct absolute path to file for Nunjucks
-                    var filepath = path.join(process.cwd(), src)
+                    let filepath = path.join(process.cwd(), src)
 
-                    var data = {}
+                    let data = {}
                     // Work with data only there is any data
                     if (options.data) {
                         // Clone data
-                        for (var i in options.data) {
+                        for (let i in options.data) {
                             if (options.data.hasOwnProperty(i)) {
                                 data[i] = options.data[i]
                             }
@@ -152,8 +152,8 @@ module.exports = function (grunt) {
         // Log number of processed templates
         .then(() => {
             // Log number of processed templates
-            var logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
-            var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
+            let logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
+            let countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
             grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
         })
 
