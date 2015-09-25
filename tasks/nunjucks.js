@@ -79,7 +79,7 @@ module.exports = function (grunt) {
                     grunt.log.error('No source files specified for ' + chalk.cyan(filedest))
 
                     // Skip to next file — nothing we can do without specified source files
-                    return
+                    return reject('For some destinations were not specified source files')
                 }
 
                 // Iterate over files' sources
@@ -89,7 +89,7 @@ module.exports = function (grunt) {
                         grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
 
                         // Skip to next source file — nothing we can do with non-existing file
-                        return
+                        return reject('Some source files were not found')
                     }
 
                     // Construct absolute path to file for Nunjucks
@@ -121,7 +121,7 @@ module.exports = function (grunt) {
                             grunt.log.writeln()
 
                             // Prevent writing of failed to compile file, skip to next file
-                            return
+                            return reject('Failed to compile some source files')
                         }
 
                         // Write rendered template to destination
