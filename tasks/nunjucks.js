@@ -130,9 +130,9 @@ module.exports = function (grunt) {
                         // Debug process
                         grunt.verbose.ok('File ' + chalk.cyan(filedest) + ' created.')
                         grunt.verbose.writeln()
-                    })
 
-                    countCompiled++
+                        countCompiled++
+                    })
                 })
             })
 
