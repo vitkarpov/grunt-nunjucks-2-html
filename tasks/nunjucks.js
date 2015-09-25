@@ -9,8 +9,8 @@
 'use strict'
 
 const nunjucks = require('nunjucks')
-const chalk = require('chalk')
-const path = require('path')
+const chalk    = require('chalk')
+const path     = require('path')
 
 module.exports = function (grunt) {
 
