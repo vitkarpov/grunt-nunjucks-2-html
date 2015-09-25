@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                     let filepath = path.join(process.cwd(), src)
 
                     let data = {}
-                    // Work with data only there is any data
+                    // Work with data only if there is any data
                     if (options.data) {
                         // Clone data
                         for (let i in options.data) {
