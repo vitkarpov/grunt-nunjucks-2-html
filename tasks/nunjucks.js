@@ -154,7 +154,7 @@ module.exports = function (grunt) {
         .then(success => {
             // Log number of processed templates
             let logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
-            let countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
+            let countCompiledColor = (logType === 'ok') ? 'green' : 'red'
             grunt.log[logType](`${chalk[countCompiledColor](countCompiled)}/${chalk.cyan(totalFiles)} ${grunt.util.pluralize(totalFiles, 'file/files')} compiled.`)
         })
 
