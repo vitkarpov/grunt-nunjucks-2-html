@@ -67,77 +67,97 @@ module.exports = function (grunt) {
         // Start counter for number of compiled files
         var countCompiled = 0
 
-        // Iterate over all files' groups
-        this.files.forEach(function (file) {
-            // Set destination
-            var filedest = file.dest
+        var self = this
 
-            // Check whether there are any source files
-            if (!file.src.length) {
-                grunt.log.error('No source files specified for ' + chalk.cyan(filedest))
+        new Promise(function (resolve, reject) {
 
-                // Skip to next file — nothing we can do without specified source files
-                return
-            }
+            // Iterate over all files' groups
+            self.files.forEach(function (file) {
+                // Set destination
+                var filedest = file.dest
 
-            // Iterate over files' sources
-            file.src.forEach(function (src) {
-                // Сheck whether source file exists
-                if (!grunt.file.exists(src)) {
-                    grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
+                // Check whether there are any source files
+                if (!file.src.length) {
+                    grunt.log.error('No source files specified for ' + chalk.cyan(filedest))
 
-                    // Skip to next source file — nothing we can do with non-existing file
+                    // Skip to next file — nothing we can do without specified source files
                     return
                 }
 
-                // Construct absolute path to file for Nunjucks
-                var filepath = path.join(process.cwd(), src)
+                // Iterate over files' sources
+                file.src.forEach(function (src) {
+                    // Сheck whether source file exists
+                    if (!grunt.file.exists(src)) {
+                        grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
 
-                var data = {}
-                // Work with data only there is any data
-                if (options.data) {
-                    // Clone data
-                    for (var i in options.data) {
-                        if (options.data.hasOwnProperty(i)) {
-                            data[i] = options.data[i]
-                        }
-                    }
-
-                    // Preprocess data
-                    if (typeof options.preprocessData === 'function') {
-                        data = options.preprocessData.call(file, data)
-                    }
-                }
-
-                // Asynchronously render templates with configurated Nunjucks environment
-                // and write to destination
-                env.render(filepath, data, function (err, res) {
-                    // Catch errors, warn
-                    if (err) {
-                        grunt.log.error(err)
-                        grunt.fail.warn('Failed to compile one of the source files.')
-                        grunt.log.writeln()
-
-                        // Prevent writing of failed to compile file, skip to next file
+                        // Skip to next source file — nothing we can do with non-existing file
                         return
                     }
 
-                    // Write rendered template to destination
-                    grunt.file.write(filedest, res)
+                    // Construct absolute path to file for Nunjucks
+                    var filepath = path.join(process.cwd(), src)
 
-                    // Debug process
-                    grunt.verbose.ok('File ' + chalk.cyan(filedest) + ' created.')
-                    grunt.verbose.writeln()
+                    var data = {}
+                    // Work with data only there is any data
+                    if (options.data) {
+                        // Clone data
+                        for (var i in options.data) {
+                            if (options.data.hasOwnProperty(i)) {
+                                data[i] = options.data[i]
+                            }
+                        }
+
+                        // Preprocess data
+                        if (typeof options.preprocessData === 'function') {
+                            data = options.preprocessData.call(file, data)
+                        }
+                    }
+
+                    // Asynchronously render templates with configurated Nunjucks environment
+                    // and write to destination
+                    env.render(filepath, data, function (err, res) {
+                        // Catch errors, warn
+                        if (err) {
+                            grunt.log.error(err)
+                            grunt.fail.warn('Failed to compile one of the source files.')
+                            grunt.log.writeln()
+
+                            // Prevent writing of failed to compile file, skip to next file
+                            return
+                        }
+
+                        // Write rendered template to destination
+                        grunt.file.write(filedest, res)
+
+                        // Debug process
+                        grunt.verbose.ok('File ' + chalk.cyan(filedest) + ' created.')
+                        grunt.verbose.writeln()
+                    })
+
+                    countCompiled++
                 })
-
-                countCompiled++
             })
+
+            // Finish Promise
+            resolve()
+        })
+
+        // Print any errors from rejects
+        .catch(function (err) {
+            if (err) {
+                grunt.log.writeln()
+                grunt.log.error(err)
+                grunt.log.writeln()
+            }
         })
 
         // Log number of processed templates
-        var logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
-        var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
-        grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
+        .then(function () {
+            // Log number of processed templates
+            var logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
+            var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
+            grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
+        })
 
         // Finish async task
         completeTask()
