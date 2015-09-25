@@ -67,6 +67,7 @@ module.exports = function (grunt) {
         // Start counter for number of compiled files
         let countCompiled = 0
 
+        // Run compilation asynchronously, wait for finish, then print results and complete task
         new Promise((resolve, reject) => {
 
             // Iterate over all files' groups
