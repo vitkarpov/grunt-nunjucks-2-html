@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 
         // Warn in case of undefined data
         if (!options.data) {
-            grunt.log.error(`Template's data is empty. Guess you've forget to specify data option`)
+            grunt.log.error(`Template's data is empty. Guess you've forget to specify data option.`)
         }
 
         // Arm Nunjucks
@@ -77,20 +77,20 @@ module.exports = function (grunt) {
 
                 // Check whether there are any source files
                 if (!file.src.length) {
-                    grunt.log.error(`No source files specified for ${chalk.cyan(filedest)}`)
+                    grunt.log.error(`No source files specified for ${chalk.cyan(filedest)}.`)
 
                     // Skip to next file — nothing we can do without specified source files
-                    return reject('For some destinations were not specified source files')
+                    return reject('For some destinations were not specified source files.')
                 }
 
                 // Iterate over files' sources
                 file.src.forEach(src => {
                     // Сheck whether source file exists
                     if (!grunt.file.exists(src)) {
-                        grunt.log.error(`Source file ${chalk.cyan(src)} for ${chalk.cyan(filedest)} not found`)
+                        grunt.log.error(`Source file ${chalk.cyan(src)} for ${chalk.cyan(filedest)} not found.`)
 
                         // Skip to next source file — nothing we can do with non-existing file
-                        return reject('Some source files were not found')
+                        return reject('Some source files were not found.')
                     }
 
                     // Construct absolute path to file for Nunjucks
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
                             grunt.log.writeln()
 
                             // Prevent writing of failed to compile file, skip to next file
-                            return reject('Failed to compile some source files')
+                            return reject('Failed to compile some source files.')
                         }
 
                         // Write rendered template to destination
