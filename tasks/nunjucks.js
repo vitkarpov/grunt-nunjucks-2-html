@@ -14,7 +14,7 @@ const path     = require('path')
 
 module.exports = function (grunt) {
 
-    grunt.registerMultiTask('nunjucks', 'Renders nunjucks\' template to HTML', function () {
+    grunt.registerMultiTask('nunjucks', `Renders Nunjucks' templates to HTML`, function () {
         // Declare async task
         const completeTask = this.async()
 
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 
         // Warn in case of undefined data
         if (!options.data) {
-            grunt.log.error('Template\'s data is empty. Guess you forget to specify data option')
+            grunt.log.error(`Template's data is empty. Guess you've forget to specify data option`)
         }
 
         // Arm Nunjucks
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
 
                 // Check whether there are any source files
                 if (!file.src.length) {
-                    grunt.log.error('No source files specified for ' + chalk.cyan(filedest))
+                    grunt.log.error(`No source files specified for ${chalk.cyan(filedest)}`)
 
                     // Skip to next file — nothing we can do without specified source files
                     return reject('For some destinations were not specified source files')
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
                 file.src.forEach(src => {
                     // Сheck whether source file exists
                     if (!grunt.file.exists(src)) {
-                        grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
+                        grunt.log.error(`Source file ${chalk.cyan(src)} for ${chalk.cyan(filedest)} not found`)
 
                         // Skip to next source file — nothing we can do with non-existing file
                         return reject('Some source files were not found')
@@ -129,7 +129,7 @@ module.exports = function (grunt) {
                         grunt.file.write(filedest, res)
 
                         // Debug process
-                        grunt.verbose.ok('File ' + chalk.cyan(filedest) + ' created.')
+                        grunt.verbose.ok(`File ${chalk.cyan(filedest)} created.`)
                         grunt.verbose.writeln()
 
                         countCompiled++
@@ -155,7 +155,7 @@ module.exports = function (grunt) {
             // Log number of processed templates
             let logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
             let countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
-            grunt.log[logType](chalk[countCompiledColor](countCompiled) + '/' + chalk.cyan(totalFiles) + ' ' + grunt.util.pluralize(totalFiles, 'file/files') + ' compiled.')
+            grunt.log[logType](`${chalk[countCompiledColor](countCompiled)}/${chalk.cyan(totalFiles)} ${grunt.util.pluralize(totalFiles, 'file/files')} compiled.`)
         })
 
         // Finish async task
