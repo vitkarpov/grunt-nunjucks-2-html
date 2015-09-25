@@ -67,12 +67,10 @@ module.exports = function (grunt) {
         // Start counter for number of compiled files
         var countCompiled = 0
 
-        var self = this
-
-        new Promise(function (resolve, reject) {
+        new Promise((resolve, reject) => {
 
             // Iterate over all files' groups
-            self.files.forEach(function (file) {
+            this.files.forEach(file => {
                 // Set destination
                 var filedest = file.dest
 
@@ -85,7 +83,7 @@ module.exports = function (grunt) {
                 }
 
                 // Iterate over files' sources
-                file.src.forEach(function (src) {
+                file.src.forEach(src => {
                     // Сheck whether source file exists
                     if (!grunt.file.exists(src)) {
                         grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
@@ -115,7 +113,7 @@ module.exports = function (grunt) {
 
                     // Asynchronously render templates with configurated Nunjucks environment
                     // and write to destination
-                    env.render(filepath, data, function (err, res) {
+                    env.render(filepath, data, (err, res) => {
                         // Catch errors, warn
                         if (err) {
                             grunt.log.error(err)
@@ -143,7 +141,7 @@ module.exports = function (grunt) {
         })
 
         // Print any errors from rejects
-        .catch(function (err) {
+        .catch(err => {
             if (err) {
                 grunt.log.writeln()
                 grunt.log.error(err)
@@ -152,7 +150,7 @@ module.exports = function (grunt) {
         })
 
         // Log number of processed templates
-        .then(function () {
+        .then(() => {
             // Log number of processed templates
             var logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
             var countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
