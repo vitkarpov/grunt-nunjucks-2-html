@@ -114,10 +114,10 @@ module.exports = function (grunt) {
 
                     // Asynchronously render templates with configurated Nunjucks environment
                     // and write to destination
-                    env.render(filepath, data, (err, res) => {
+                    env.render(filepath, data, (error, result) => {
                         // Catch errors, warn
-                        if (err) {
-                            grunt.log.error(err)
+                        if (error) {
+                            grunt.log.error(error)
                             grunt.fail.warn('Failed to compile one of the source files.')
                             grunt.log.writeln()
 
@@ -126,7 +126,7 @@ module.exports = function (grunt) {
                         }
 
                         // Write rendered template to destination
-                        grunt.file.write(filedest, res)
+                        grunt.file.write(filedest, result)
 
                         // Debug process
                         grunt.verbose.ok(`File ${chalk.cyan(filedest)} created.`)
@@ -142,10 +142,10 @@ module.exports = function (grunt) {
         })
 
         // Print any errors from rejects
-        .catch(err => {
-            if (err) {
+        .catch(error => {
+            if (error) {
                 grunt.log.writeln()
-                grunt.log.error(err)
+                grunt.log.error(error)
                 grunt.log.writeln()
             }
         })
