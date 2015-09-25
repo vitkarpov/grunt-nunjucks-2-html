@@ -151,7 +151,7 @@ module.exports = function (grunt) {
         })
 
         // Log number of processed templates
-        .then(() => {
+        .then(success => {
             // Log number of processed templates
             let logType            = (countCompiled === totalFiles) ? 'ok' : 'error'
             let countCompiledColor = (countCompiled === totalFiles) ? 'green' : 'red'
