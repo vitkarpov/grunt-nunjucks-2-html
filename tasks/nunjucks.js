@@ -12,9 +12,9 @@ var nunjucks = require('nunjucks')
 var chalk = require('chalk')
 var path = require('path')
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    grunt.registerMultiTask('nunjucks', 'Renders nunjucks\' template to HTML', function() {
+    grunt.registerMultiTask('nunjucks', 'Renders nunjucks\' template to HTML', function () {
         // Declare async task
         var completeTask = this.async()
 
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         var countCompiled = 0
 
         // Iterate over all files' groups
-        this.files.forEach(function(file) {
+        this.files.forEach(function (file) {
             // Set destination
             var filedest = file.dest
 
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
             }
 
             // Iterate over files' sources
-            file.src.forEach(function(src) {
+            file.src.forEach(function (src) {
                 // Сheck whether source file exists
                 if (!grunt.file.exists(src)) {
                     grunt.log.error('Source file ' + chalk.cyan(src) + ' for ' + chalk.cyan(filedest) + ' not found.')
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 
                 // Asynchronously render templates with configurated Nunjucks environment
                 // and write to destination
-                env.render(filepath, data, function(err, res) {
+                env.render(filepath, data, function (err, res) {
                     // Catch errors, warn
                     if (err) {
                         grunt.log.error(err)
