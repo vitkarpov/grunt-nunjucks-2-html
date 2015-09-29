@@ -85,14 +85,6 @@ module.exports = function (grunt) {
 
                 // Iterate over files' sources
                 file.src.forEach(src => {
-                    // Сheck whether source file exists
-                    if (!grunt.file.exists(src)) {
-                        grunt.log.error(`Source file ${chalk.cyan(src)} for ${chalk.cyan(filedest)} not found.`)
-
-                        // Skip to next source file — nothing we can do with non-existing file
-                        return reject('Some source files were not found.')
-                    }
-
                     // Construct absolute path to file for Nunjucks
                     let filepath = path.join(process.cwd(), src)
 
