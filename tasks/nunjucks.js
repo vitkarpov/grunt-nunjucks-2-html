@@ -62,7 +62,7 @@ module.exports = function (grunt) {
         let countCompiled = 0
 
         // Run compilation asynchronously, wait for finish, then print results and complete task
-        new Promise((resolve, reject) => {
+        const task = new Promise((resolve, reject) => {
 
             // Iterate over all files' groups
             this.files.forEach(file => {
