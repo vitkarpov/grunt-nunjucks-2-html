@@ -89,19 +89,16 @@ module.exports = function (grunt) {
                     let filepath = path.join(process.cwd(), src)
 
                     let data = {}
-                    // Work with data only if there is any data
-                    if (options.data) {
-                        // Clone data
-                        for (let i in options.data) {
-                            if (options.data.hasOwnProperty(i)) {
-                                data[i] = options.data[i]
-                            }
+                    // Clone data
+                    for (let i in options.data) {
+                        if (options.data.hasOwnProperty(i)) {
+                            data[i] = options.data[i]
                         }
+                    }
 
-                        // Preprocess data
-                        if (typeof options.preprocessData === 'function') {
-                            data = options.preprocessData.call(file, data)
-                        }
+                    // Preprocess data
+                    if (options.data && typeof options.preprocessData === 'function') {
+                        data = options.preprocessData.call(file, data)
                     }
 
                     // Asynchronously render templates with configurated Nunjucks environment
