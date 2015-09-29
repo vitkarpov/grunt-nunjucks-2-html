@@ -22,12 +22,6 @@ module.exports = function (grunt) {
         // @note We're using `undefined` to fallback to Nunjucks' default settings
         const options = this.options({
             paths                : '',
-            autoescape           : undefined,
-            throwOnUndefined     : undefined,
-            trimBlocks           : undefined,
-            lstripBlocks         : undefined,
-            noCache              : undefined,
-            tags                 : undefined,
             configureEnvironment : false,
             data                 : false,
             preprocessData       : false
