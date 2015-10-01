@@ -15,7 +15,7 @@ let generated = [
 ]
 
 module.exports = function () {
-  expected.forEach(function (input, i) {
+  expected.forEach((input, i) => {
     try {
       expect(input).to.eql(generated[i])
     } catch (e) {
