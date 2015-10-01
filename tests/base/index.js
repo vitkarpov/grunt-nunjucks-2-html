@@ -1,15 +1,17 @@
-var expect = require('expect.js');
-var fs = require('fs');
-var util = require('util');
-var path = require('path');
+'use strict'
 
-var expected = fs.readFileSync(path.join(__dirname, 'output.html')).toString();
-var generated = fs.readFileSync(path.join(__dirname, '_output.html')).toString();
+const expect = require('expect.js')
+const fs = require('fs')
+const util = require('util')
+const path = require('path')
 
-module.exports = function() {
-    try {
-        expect(expected).to.eql(generated);
-    } catch(e) {
-        console.log(util.inspect(e, {colors: true}));
-    }
+let expected = fs.readFileSync(path.join(__dirname, 'output.html')).toString()
+let generated = fs.readFileSync(path.join(__dirname, '_output.html')).toString()
+
+module.exports = function () {
+  try {
+    expect(expected).to.eql(generated)
+  } catch (e) {
+    console.log(util.inspect(e, {colors: true}))
+  }
 }
