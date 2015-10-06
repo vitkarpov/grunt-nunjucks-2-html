@@ -1,6 +1,6 @@
-var path = require('path')
-var tests = ['base', 'leaking-vars']
+'use strict'
 
-tests.forEach(function (folder) {
-  require(path.join(__dirname, folder))()
-})
+const path = require('path')
+const tests = ['base', 'leaking-vars']
+
+tests.forEach((folder) => require(path.join(__dirname, folder)))
