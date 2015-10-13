@@ -39,6 +39,11 @@ module.exports = function (grunt) {
       grunt.log.error(`Template's data is empty. Guess you've forget to specify data option.`)
     }
 
+    // autoescaping true by default
+    if (options.autoescape === undefined) {
+        options.autoescape = true;
+    }
+
     // Arm Nunjucks
     const env = nunjucks.configure(options.paths, {
       watch: false,
@@ -46,7 +51,7 @@ module.exports = function (grunt) {
       throwOnUndefined: options.throwOnUndefined,
       trimBlocks: options.trimBlocks,
       lstripBlocks: options.lstripBlocks,
-      noCache: options.noCache,
+      noCache: true,
       tags: options.tags
     })
 
