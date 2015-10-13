@@ -48,6 +48,7 @@ nunjucks: {
        }
     ]
   }
+}
 ```
 
 You'll get a set of html files in `build` folder.
