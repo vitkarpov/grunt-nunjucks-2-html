@@ -24,6 +24,7 @@ module.exports = function (grunt) {
       render: {
         files: {
           'tests/base/_output.html': ['tests/base/input.html'],
+          'tests/autoescape/_output.html': ['tests/autoescape/input.html'],
           'tests/leaking-vars/_output1.html': ['tests/leaking-vars/input1.html'],
           'tests/leaking-vars/_output2.html': ['tests/leaking-vars/input2.html']
         }
