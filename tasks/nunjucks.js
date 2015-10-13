@@ -41,7 +41,7 @@ module.exports = function (grunt) {
 
     // autoescaping true by default
     if (options.autoescape === undefined) {
-        options.autoescape = true;
+      options.autoescape = true
     }
 
     // Arm Nunjucks
