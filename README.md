@@ -97,40 +97,9 @@ nunjucks: {
 }
 ```
 
-### Paths
+### paths
 
 You could specify root path for your templates, `paths` would be set for [nunjucks' configure](http://mozilla.github.io/nunjucks/api#configure)
-
-### Customizing Syntax
-
-If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
-
-```js
-nunjucks: {
-  options: {
-    tags: {
-      blockStart: '<%',
-      blockEnd: '%>',
-      variableStart: '<$',
-      variableEnd: '$>',
-      commentStart: '<#',
-      commentEnd: '#>'
-    },
-    data: grunt.file.readJSON('data.json')
-  },
-  render: {
-    files: [
-       {
-          expand: true,
-          cwd: "bundles/",
-          src: "*.html",
-          dest: "build/",
-          ext: ".html"
-       }
-    ]
-  }
-}
-```
 
 ### configureEnvironment
 
@@ -162,4 +131,53 @@ nunjucks: {
 
 Check out [nunjucks' API](http://mozilla.github.io/nunjucks/api.html#environment) to know a list of available methods for environment object.
 
-Nice!
+### Nunjucks' configure API
+
+You can use [nunjucks' configure API](http://mozilla.github.io/nunjucks/api#configure) as options for plugin.
+
+### tags
+
+If you want different tokens than {{ and the rest for variables, blocks, and comments, you can specify different tokens as the tags option:
+
+```js
+nunjucks: {
+  options: {
+    tags: {
+      blockStart: '<%',
+      blockEnd: '%>',
+      variableStart: '<$',
+      variableEnd: '$>',
+      commentStart: '<#',
+      commentEnd: '#>'
+    },
+    data: grunt.file.readJSON('data.json')
+  },
+  render: {
+    files: [
+       {
+          expand: true,
+          cwd: "bundles/",
+          src: "*.html",
+          dest: "build/",
+          ext: ".html"
+       }
+    ]
+  }
+}
+```
+
+#### autoescape
+
+By default, nunjucks escapes all output. [Details](http://mozilla.github.io/nunjucks/api#autoescaping)
+
+#### throwOnUndefined
+
+Throw errors when outputting a null/undefined value
+
+#### trimBlocks
+
+Automatically remove trailing newlines from a block/tag
+
+#### lstripBlocks
+
+Automatically remove leading whitespace from a block/tag
