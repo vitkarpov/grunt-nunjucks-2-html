@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
-    "nunjucks": "^2.1.0"
+    "nunjucks": ">= 2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
