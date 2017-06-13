@@ -1,6 +1,6 @@
 {
   "name": "grunt-nunjucks-2-html",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Grunt task for rendering nunjucks` templates to HTML",
   "homepage": "https://github.com/vitkarpov/grunt-nunjucks-2-html",
   "author": "Viktor Karpov <viktor.s.karpov@gmail.com>",
