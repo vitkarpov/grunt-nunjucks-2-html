@@ -18,7 +18,6 @@ module.exports = function (grunt) {
     const completeTask = this.async()
 
     // Get options and set defaults
-    // @note We're using `undefined` to fallback to Nunjucks' default settings
     const options = this.options({
       watch: false,
       paths: '',
