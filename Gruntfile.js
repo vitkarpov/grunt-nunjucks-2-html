@@ -2,12 +2,6 @@ var path = require('path')
 
 module.exports = function (grunt) {
   grunt.initConfig({
-    jscs: {
-      src: ['tasks/nunjucks.js', 'tests/**/*.js'],
-      options: {
-        config: '.jscsrc'
-      }
-    },
     nunjucks: {
       options: {
         fooName: 'foo',
@@ -32,7 +26,6 @@ module.exports = function (grunt) {
     }
   })
 
-  grunt.loadNpmTasks('grunt-jscs')
   grunt.loadTasks('tasks/')
 
   grunt.registerTask('test', ['nunjucks'])

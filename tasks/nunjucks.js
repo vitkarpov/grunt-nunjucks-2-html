@@ -65,7 +65,7 @@ module.exports = function (grunt) {
           grunt.log.error(`No source files specified for ${chalk.cyan(filedest)}.`)
 
           // Skip to next file — nothing we can do without specified source files
-          return reject('For some destinations were not specified source files.')
+          return reject(new Error('For some destinations were not specified source files.'))
         }
 
         // Iterate over files' sources
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
               grunt.log.writeln()
 
               // Prevent writing of failed to compile file, skip to next file
-              return reject('Failed to compile some source files.')
+              return reject(new Error('Failed to compile some source files.'))
             }
 
             // Write rendered template to destination
