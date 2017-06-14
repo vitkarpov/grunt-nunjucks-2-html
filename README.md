@@ -1,6 +1,7 @@
 # Grunt task for rendering nunjucks` templates to HTML
 
 [![NPM version](https://badge.fury.io/js/grunt-nunjucks-2-html.png)](http://badge.fury.io/js/grunt-nunjucks-2-html)
+[![Build Status](https://travis-ci.org/vitkarpov/grunt-nunjucks-2-html.svg?branch=master)](https://travis-ci.org/vitkarpov/grunt-nunjucks-2-html)
 
 ## Getting start
 
