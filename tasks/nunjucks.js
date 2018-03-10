@@ -92,7 +92,7 @@ module.exports = function (grunt) {
         done()
       }
 
-      const renders = file.src.map((src) => new Promise((resolve, reject) =>
+      const renders = file.src.map((src) =>
         render(env, path.resolve(src), prepareData(options, file))
           .then((rendered) => {
             grunt.file.write(filedest, rendered)
@@ -102,8 +102,7 @@ module.exports = function (grunt) {
             grunt.log.error(error)
             errors++
           })
-          .then(() => resolve())
-      ))
+      )
 
       return files.concat(renders)
     }, [])
