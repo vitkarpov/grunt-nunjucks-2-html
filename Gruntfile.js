@@ -13,8 +13,8 @@ module.exports = function (grunt) {
         configureEnvironment: function (env) {
           var options = this.options()
           env.addGlobal(options.fooName, 'bar')
-          env.addFilter('timeout', ({ message, delay }, done) =>
-            setTimeout(() => done(null, message), delay)
+          env.addFilter('timeout', (options, done) =>
+            setTimeout(() => done(null, options.message), options.delay)
           , true)
         }
       },
