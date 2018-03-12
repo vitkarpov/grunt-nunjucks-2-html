@@ -13,6 +13,9 @@ module.exports = function (grunt) {
         configureEnvironment: function (env) {
           var options = this.options()
           env.addGlobal(options.fooName, 'bar')
+          env.addFilter('timeout', ({ message, delay }, done) =>
+            setTimeout(() => done(null, message), delay)
+          , true)
         }
       },
       render: {
@@ -20,7 +23,9 @@ module.exports = function (grunt) {
           'tests/base/_output.html': ['tests/base/input.html'],
           'tests/autoescape/_output.html': ['tests/autoescape/input.html'],
           'tests/leaking-vars/_output1.html': ['tests/leaking-vars/input1.html'],
-          'tests/leaking-vars/_output2.html': ['tests/leaking-vars/input2.html']
+          'tests/leaking-vars/_output2.html': ['tests/leaking-vars/input2.html'],
+          'tests/async/_output1.html': ['tests/async/input1.html'],
+          'tests/async/_output2.html': ['tests/async/input2.html']
         }
       }
     }
